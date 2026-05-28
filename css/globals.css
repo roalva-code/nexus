@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Color Palette - Refined Grayscale Dark (Default) */
+    --bg-deep: #09090b;
+    --bg-sidebar: #121214;
+    --bg-content: #27272c;
+    --bg-card: #232326;
+    
+    --accent-primary: #0071e3; 
+    --accent-secondary: #3f3f46;
+    --accent-success: #22c55e;
+    --accent-warning: #eab308;
+    --accent-danger: #ef4444;
+    
+    --text-primary: #fafafa;
+    --text-secondary: #a1a1aa;
+    --text-muted: #71717a;
+    
+    --border-color: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --radius-xl: 24px;
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme='light'] {
+    /* Color Palette - Refined Grayscale Light (Apple/Linear Style) */
+    --bg-deep: #f4f4f5;       
+    --bg-sidebar: #f4f4f4;    
+    --bg-content: #ffffff;    
+    --bg-card: #ffffff;       
+    
+    --accent-primary: #0071e3; 
+    --accent-secondary: #e4e4e7;
+    --accent-success: #16a34a;
+    --accent-warning: #ca8a04;
+    --accent-danger: #dc2626;
+    
+    --text-primary: #18181b;
+    --text-secondary: #52525b;
+    --text-muted: #a1a1aa;
+    
+    --border-color: rgba(0, 0, 0, 0.08);
+    --glass-border: rgba(0, 0, 0, 0.06);
+    --shadow-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Base Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-deep);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+
+/* --- SISTEMA DE COMPONENTES NEXUS --- */
+
+/* Cards con Elevación */
+.nx-card {
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: var(--transition-smooth);
+}
+
+.nx-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Botones con Profundidad */
+.nx-btn {
+    padding: 0.6rem 1.25rem;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.nx-btn-primary {
+    background: var(--accent-primary);
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 113, 227, 0.25);
+}
+
+.nx-btn-primary:hover {
+    background: #0077ed;
+    box-shadow: 0 4px 15px rgba(0, 113, 227, 0.4);
+}
+
+.nx-btn-outline {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.nx-btn-outline:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--text-secondary);
+}
+
+/* Inputs Elegantes */
+.nx-input {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1rem;
+    color: var(--text-primary);
+    width: 100%;
+    transition: var(--transition-smooth);
+    outline: none;
+}
+
+.nx-input:focus {
+    border-color: var(--accent-primary);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.15);
+}
+
+/* Badges Minimalistas */
+.nx-badge {
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid transparent;
+}
+
+.nx-badge-success { 
+    background: rgba(34, 197, 94, 0.1); 
+    color: #4ade80; 
+    border-color: rgba(34, 197, 94, 0.2); 
+}
+.nx-badge-warning { 
+    background: rgba(234, 179, 8, 0.1); 
+    color: #facc15; 
+    border-color: rgba(234, 179, 8, 0.2); 
+}
+.nx-badge-danger { 
+    background: rgba(239, 68, 68, 0.1); 
+    color: #f87171; 
+    border-color: rgba(239, 68, 68, 0.2); 
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--accent-secondary); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
