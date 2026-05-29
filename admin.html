@@ -8,19 +8,23 @@
     <script src="./libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="./css/globals.css">
     <link rel="stylesheet" href="./css/layout.css">
-    <title>Nexus - Admin Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <title>Nexus Admin - Panel de Control</title>
 </head>
 <body>
     
     <main class="main-content">
-        <header class="header">
+        <header class="header px-4">
             <div class="d-flex justify-content-between align-items-center w-100">
-                <div class="d-flex align-items-center">
-                    <i class="bi bi-list d-md-none me-3 fs-3" id="mobile-toggle" style="cursor: pointer;"></i>
-                    <h2>Nexus - Panel Administrativo</h2>
+                <div class="d-flex align-items-center gap-3">
+                    <i class="bi bi-list d-md-none fs-3" id="mobile-toggle" style="cursor: pointer;"></i>
+                    <h2 class="m-0 fs-6 fw-bold tracking-tight">NEXUS <span class="text-muted fw-normal">ADMIN</span></h2>
                 </div>
-                <div class="theme-toggle" id="theme-toggle" style="cursor: pointer;">
-                    <i class="bi bi-moon-stars fs-5" id="theme-icon"></i>
+                
+                <div class="header-actions d-flex align-items-center gap-3">
+                    <div class="theme-toggle p-2 rounded-circle hover-effect" id="theme-toggle" title="Cambiar Tema" style="cursor: pointer;">
+                        <i class="bi bi-moon-fill fs-6" id="theme-icon"></i>
+                    </div>
                 </div>
             </div>
         </header>
@@ -28,49 +32,45 @@
         <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
         <aside class="sidebar">
-            <div class="sidebar-content">
-                <div class="logo-container">
+            <div class="sidebar-content h-100 d-flex flex-column">
+                <div class="logo-container mb-4">
                     <div class="logo">
-                        <img src="./assets/img/logo.png" alt="Logo" width="28px" height="28px">
+                        <img src="./assets/img/logo.png" alt="Logo" width="22px" height="22px">
+                        <span class="fw-bold fs-6 tracking-tight">NEXUS</span>
                     </div>
                     <div class="menu">
-                        <span class="menu" id="menu"><i class="bi bi-layout-sidebar-inset fs-5"></i></span>
-                        <span class="close" id="close" style="display: none;"><i class="bi bi-layout-sidebar fs-5"></i></span>
+                        <span id="menu"><i class="bi bi-layout-sidebar-inset"></i></span>
                     </div>
                 </div>
-                <div class="menu-content">
-                    <ul style="padding: 0px !important;">
+                
+                <div class="menu-content flex-grow-1">
+                    <ul class="list-unstyled p-0">
                         <li class="item-content">
-                            <div class="item-menu">    
-                                <a data-module="home-admin" class="link-item">
-                                    <div>
-                                       <i class="bi bi-house-door-fill"></i>  
-                                    </div>   
-                                    <div class="name-item">Home</div>
-                                </a>
-                            </div>
+                            <a data-module="home-admin" class="link-item">
+                                <i class="bi bi-house-door"></i>
+                                <span class="name-item">Inicio</span>
+                            </a>
                         </li>
                         <li class="item-content">
-                            <div class="item-menu">
-                                <a data-module="estado-servicios" class="link-item">
-                                    <div>
-                                        <i class="bi bi-hdd-network-fill"></i>
-                                    </div>   
-                                    <div class="name-item">Estado Servicios</div>
-                                </a>
-                            </div>
+                            <a data-module="estado-servicios" class="link-item">
+                                <i class="bi bi-shield-check"></i>
+                                <span class="name-item">Servicios</span>
+                            </a>
                         </li>
                         <li class="item-content">
-                            <div class="item-menu">
-                                <a data-module="reportes" class="link-item">
-                                    <div>
-                                        <i class="bi bi-bar-chart-fill"></i> 
-                                    </div>   
-                                    <div class="name-item">Reportes</div>
-                                </a>
-                            </div>
+                            <a data-module="reportes" class="link-item">
+                                <i class="bi bi-bar-chart"></i>
+                                <span class="name-item">Reportes</span>
+                            </a>
                         </li>
                     </ul>
+                </div>
+
+                <div class="sidebar-footer mt-auto pt-3 border-top border-white border-opacity-5">
+                    <div class="d-flex align-items-center gap-2 px-2">
+                        <div class="bg-success rounded-circle" style="width: 8px; height: 8px;"></div>
+                        <span class="extra-small text-muted" style="font-size: 10px;">SERVIDOR ACTIVO</span>
+                    </div>
                 </div>
             </div>
         </aside>
@@ -79,10 +79,7 @@
             <div class="view" id="view_mod"></div>
         </section>
         
-        
-        <footer class="footer">
-            <!-- <p>&copy; 2025 Todos los derechos reservados.</p>-->
-        </footer>
+        <footer class="footer"></footer>
     </main>
 </body>
 <script type="module" src="./admin/admin.js"></script>

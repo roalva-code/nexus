@@ -2,9 +2,12 @@
  * Router para la carga dinámica de módulos sin iframes
  */
 
+import ModuleService from '../services/module-service.js';
+
 const Router = {
     // Contenedor principal donde se cargará el contenido
     contentArea: null,
+    currentModule: null,
 
     /**
      * Inicializa el router configurando el contenedor principal
@@ -16,6 +19,14 @@ const Router = {
             console.error(`No se encontró el contenedor con ID: ${containerId}`);
             return;
         }
+        
+        // Escuchar cambios de estado globales para reaccionar en tiempo real
+        window.addEventListener('moduleStatusChanged', (e) => {
+            if (this.currentModule === e.detail.moduleName) {
+                this.checkResilience(e.detail.moduleName, e.detail.status);
+            }
+        });
+
         console.log("Router inicializado correctamente.");
     },
 
@@ -25,12 +36,13 @@ const Router = {
      */
     async loadModule(moduleName) {
         if (!this.contentArea) return;
+        this.currentModule = moduleName;
 
         // Definir la ruta fuera del try para que sea accesible en el catch
         const path = `./modules/${moduleName}/${moduleName}.html`;
 
         try {
-            // Mostrar un loader simple (opcional, para mejorar UX luego)
+            // Mostrar un loader simple
             this.contentArea.innerHTML = '<div class="d-flex justify-content-center p-5"><div class="spinner-border text-primary" role="status"></div></div>';
 
             const response = await fetch(path);
@@ -44,14 +56,22 @@ const Router = {
             // Inyectar el HTML
             this.contentArea.innerHTML = html;
 
-            // Notificar a la aplicación que el módulo ha cambiado (para actualizar sidebar, etc)
+            // Cargar CSS específico del módulo
+            this.loadModuleCSS(moduleName);
+
+            // Verificar si el servicio está caído antes de inicializar JS
+            const isOnline = ModuleService.isOnline(moduleName);
+            this.checkResilience(moduleName, isOnline);
+
+            // Notificar a la aplicación que el módulo ha cambiado
             window.dispatchEvent(new CustomEvent('moduleLoaded', { detail: { moduleName } }));
 
-            // Actualizar la URL o el estado si fuera necesario (opcional)
-            console.log(`Módulo [${moduleName}] cargado.`);
+            // Tarea: Intentar cargar e inicializar el JS del módulo automáticamente
+            if (isOnline) {
+                this.loadModuleJS(moduleName);
+            }
 
-            // Cargar CSS y JS del módulo de forma opcional si existen
-            this.loadModuleAssets(moduleName);
+            console.log(`Módulo [${moduleName}] cargado.`);
 
         } catch (error) {
             console.error(error);
@@ -66,13 +86,60 @@ const Router = {
     },
 
     /**
-     * Carga scripts y estilos específicos del módulo si existen
+     * Verifica la resiliencia del módulo y muestra/quita el overlay
+     */
+    checkResilience(moduleName, isOnline) {
+        // Eliminar cualquier overlay existente primero
+        const existingOverlay = this.contentArea.querySelector('.nx-overlay');
+        if (existingOverlay) existingOverlay.remove();
+
+        if (!isOnline) {
+            const overlay = document.createElement('div');
+            overlay.className = 'nx-overlay';
+            overlay.innerHTML = `
+                <div class="nx-overlay-icon">
+                    <i class="bi bi-cloud-slash"></i>
+                </div>
+                <h2 class="nx-overlay-title">Servicio No Disponible</h2>
+                <p class="nx-overlay-msg">
+                    Lo sentimos, el módulo <strong>${moduleName}</strong> se encuentra temporalmente fuera de servicio por mantenimiento o fallas técnicas.
+                </p>
+                <button class="nx-btn nx-btn-outline" onclick="location.reload()">Reintentar Conexión</button>
+            `;
+            this.contentArea.appendChild(overlay);
+        }
+    },
+
+    /**
+     * Carga dinámicamente el archivo CSS del módulo
+     */
+    loadModuleCSS(moduleName) {
+        const cssId = `css-${moduleName}`;
+        if (!document.getElementById(cssId)) {
+            const link = document.createElement('link');
+            link.id = cssId;
+            link.rel = 'stylesheet';
+            link.href = `./modules/${moduleName}/${moduleName}.css?t=${Date.now()}`;
+            document.head.appendChild(link);
+        }
+    },
+
+    /**
+     * Carga dinámicamente el archivo JS del módulo e invoca su función init()
      * @param {string} moduleName 
      */
-    loadModuleAssets(moduleName) {
-        // Aquí podríamos implementar la carga dinámica de .css y .js específicos
-        // Para no duplicar, podríamos verificar si ya existen.
-        // Por ahora lo dejamos como gancho para la siguiente fase.
+    async loadModuleJS(moduleName) {
+        try {
+            const jsPath = `../modules/${moduleName}/${moduleName}.js`;
+            const moduleScript = await import(jsPath + '?t=' + Date.now());
+            
+            if (moduleScript && typeof moduleScript.init === 'function') {
+                // Pasamos el contenedor para que el módulo busque sus elementos dentro
+                moduleScript.init(this.contentArea);
+            }
+        } catch (e) {
+            console.debug(`No se encontró o no se pudo inicializar JS para: ${moduleName}`);
+        }
     }
 };
 

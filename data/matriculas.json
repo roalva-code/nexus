@@ -1,0 +1,59 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "codigo": "2026001",
+      "nombres": "Juan Carlos",
+      "apellidos": "Ramirez Soto",
+      "ciclo": "ANUAL UNI",
+      "turno": "Mañana",
+      "estado": "Matriculado",
+      "correo": "juan.ramirez@nexus.edu",
+      "telefono": "987654321"
+    },
+    {
+      "id": 2,
+      "codigo": "2026002",
+      "nombres": "Maria Fernanda",
+      "apellidos": "Lopez Torres",
+      "ciclo": "ANUAL SAN MARCOS",
+      "turno": "Tarde",
+      "estado": "Pendiente",
+      "correo": "maria.lopez@nexus.edu",
+      "telefono": "912345678"
+    },
+    {
+      "id": 3,
+      "codigo": "2026003",
+      "nombres": "Luis Alberto",
+      "apellidos": "Quispe Medina",
+      "ciclo": "SEMESTRAL UNI",
+      "turno": "Mañana",
+      "estado": "Matriculado",
+      "correo": "luis.quispe@nexus.edu",
+      "telefono": "923456781"
+    },
+    {
+      "id": 4,
+      "codigo": "2026004",
+      "nombres": "Andrea Lucia",
+      "apellidos": "Vargas Rojas",
+      "ciclo": "REPASO SAN MARCOS",
+      "turno": "Noche",
+      "estado": "Reservado",
+      "correo": "andrea.vargas@nexus.edu",
+      "telefono": "934567812"
+    },
+    {
+      "id": 5,
+      "codigo": "2026005",
+      "nombres": "Kevin Alexander",
+      "apellidos": "Huaman Perez",
+      "ciclo": "VERANO UNI",
+      "turno": "Tarde",
+      "estado": "Matriculado",
+      "correo": "kevin.huaman@nexus.edu",
+      "telefono": "945678123"
+    }
+  ]
+}

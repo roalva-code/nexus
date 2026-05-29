@@ -1,0 +1,5 @@
+/* Estilos para el Home de Admin */
+.nx-card:hover {
+    border-color: var(--accent-primary);
+    background: rgba(0, 113, 227, 0.02);
+}

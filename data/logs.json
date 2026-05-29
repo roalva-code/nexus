@@ -1,0 +1,25 @@
+{
+  "logs": [
+    {
+      "id": 1,
+      "tipo": "INFO",
+      "modulo": "Matrículas",
+      "mensaje": "Servicio iniciado correctamente.",
+      "fecha": "2026-05-27 09:00:00"
+    },
+    {
+      "id": 2,
+      "tipo": "WARNING",
+      "modulo": "Tickets IA",
+      "mensaje": "Tiempo de respuesta elevado.",
+      "fecha": "2026-05-27 09:15:00"
+    },
+    {
+      "id": 3,
+      "tipo": "ERROR",
+      "modulo": "Reportes",
+      "mensaje": "Servicio deshabilitado por administrador.",
+      "fecha": "2026-05-27 09:40:00"
+    }
+  ]
+}

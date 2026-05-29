@@ -1,0 +1,66 @@
+/* Estilos específicos para el módulo de Matrículas - Versión Premium Compacta */
+
+.nx-table-container {
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.nx-table th {
+    background: rgba(255, 255, 255, 0.015);
+    padding: 1rem 1.25rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+}
+
+.nx-table td {
+    padding: 0.85rem 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.small-text {
+    font-size: 0.85rem;
+}
+
+.extra-small {
+    font-size: 0.75rem;
+}
+
+.code-badge {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent-primary);
+}
+
+.avatar-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #2c2c2e, #1c1c1e);
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: var(--text-primary);
+}
+
+.icon-btn {
+    padding: 4px 8px !important;
+    font-size: 1.1rem;
+    border: none !important;
+    background: transparent !important;
+    color: var(--text-muted);
+}
+
+.icon-btn:hover {
+    color: var(--text-primary);
+}

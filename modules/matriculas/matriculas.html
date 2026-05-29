@@ -1,0 +1,38 @@
+<div class="container-fluid p-4 p-md-5">
+    <div class="row mb-4 align-items-end">
+        <div class="col">
+            <h3 class="fw-bold mb-1">Gestión de Matrículas</h3>
+            <p class="text-secondary small mb-0">Listado institucional de alumnos y estados de inscripción.</p>
+        </div>
+        <div class="col-md-4 mt-3 mt-md-0">
+            <div class="position-relative">
+                <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 nx-icon-dynamic"></i>
+                <input type="text" class="nx-input ps-5 py-2" id="search-alumnos" placeholder="Buscar alumno, DNI o ciclo...">
+            </div>
+        </div>
+    </div>
+
+    <div class="nx-table-container shadow-sm">
+        <table class="nx-table" id="table-matriculas">
+            <thead>
+                <tr>
+                    <th width="50"></th>
+                    <th>Alumno</th>
+                    <th>Código</th>
+                    <th>Ciclo / Programa</th>
+                    <th>Turno</th>
+                    <th>Estado</th>
+                    <th class="text-end" width="100">Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-matriculas">
+                <!-- Se llenará dinámicamente -->
+            </tbody>
+        </table>
+    </div>
+    
+    <div id="no-results" class="text-center p-5 d-none">
+        <i class="bi bi-person-x fs-1 text-muted"></i>
+        <p class="text-muted mt-2">No se encontraron alumnos con ese criterio.</p>
+    </div>
+</div>

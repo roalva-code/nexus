@@ -1,28 +1,77 @@
-<div class="container-fluid p-4">
-    <div class="row mb-4">
-        <div class="col">
-            <h2 class="fw-bold">Dashboard Analítico</h2>
-            <hr class="border-secondary">
+<div class="container-fluid p-4 p-md-5">
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="fw-bold mb-1">Dashboard General</h2>
+            <p class="text-secondary small"></p>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="card bg-dark text-white border-secondary h-100 p-4">
-                <h4>Gráfico de Actividad</h4>
-                <div style="height: 300px; background: #35424a; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                    <span class="text-muted">Espacio para gráfico de Chart.js</span>
+
+    <!-- Metrics Grid -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="nx-card metric-card">
+                <div class="d-flex justify-content-between mb-3">
+                    <span class="text-muted small fw-bold text-uppercase">Alumnos Registrados</span>
+                    <i class="bi bi-people text-primary fs-4"></i>
+                </div>
+                <div class="h1 fw-bold mb-1" id="stat-students">--</div>
+                <div class="text-success small"><i class="bi bi-arrow-up-short"></i> +12% este mes</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="nx-card metric-card border-warning-subtle">
+                <div class="d-flex justify-content-between mb-3">
+                    <span class="text-muted small fw-bold text-uppercase">Ciclos Activos</span>
+                    <i class="bi bi-ticket-perforated text-warning fs-4"></i>
+                </div>
+                <div class="h1 fw-bold mb-1" id="stat-tickets">--</div>
+                <div class="text-secondary small">Requieren atención de IA</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="nx-card metric-card">
+                <div class="d-flex justify-content-between mb-3">
+                    <span class="text-muted small fw-bold text-uppercase">Uptime Sistema</span>
+                    <i class="bi bi-cpu text-success fs-4"></i>
+                </div>
+                <div class="h1 fw-bold mb-1">99.9%</div>
+                <div class="text-success small">Operativo</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Recent Students Activity -->
+        <div class="col-lg-7">
+            <div class="nx-card h-100">
+                <h5 class="fw-bold mb-4">Ingresos Recientes (Matrículas)</h5>
+                <div class="nx-table-container border-0">
+                    <table class="nx-table table">
+                        <thead>
+                            <tr>
+                                <th>Alumno</th>
+                                <th>Ciclo</th>
+                                <th class="text-end">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dash-tbody-students">
+                            <!-- JS -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
-            <div class="card bg-dark text-white border-secondary mb-3">
-                <div class="card-body">
-                    <h6>Resumen Semanal</h6>
-                    <ul class="list-unstyled">
-                        <li class="mb-2">Matrículas: <span class="text-success">+15%</span></li>
-                        <li class="mb-2">Consultas IA: <span class="text-info">2.4k</span></li>
-                        <li>Eficiencia: <span class="text-warning">92%</span></li>
-                    </ul>
+        
+        <!-- Quick Support IA -->
+        <div class="col-lg-5">
+            <div class="nx-card bg-opacity-5 h-100 border-primary border-opacity-10">
+                <h5 class="fw-bold mb-3"><i class="bi bi-stars me-2 text-primary"></i>Asistente NEXUS</h5>
+                <p class="text-secondary small mb-4">Si tiene algun problema técnico, pero no sabe a con que área contactarse, nuestro asistente IA puede ayudarle.</p>
+                
+                <div class="d-flex flex-column gap-2">
+                    <button class="nx-btn nx-btn-primary w-100 justify-content-between" onclick="Router.loadModule('tickets-ia')">
+                        Consultar a Asistente NEXUS <i class="bi bi-chevron-right"></i>
+                    </button>
                 </div>
             </div>
         </div>

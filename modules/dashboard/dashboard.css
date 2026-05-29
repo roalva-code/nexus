@@ -1,0 +1,23 @@
+/* Estilos específicos para el Dashboard */
+
+.metric-card {
+    transition: transform 0.3s ease;
+    border-left: 4px solid var(--accent-primary);
+}
+
+.metric-card:hover {
+    transform: scale(1.02);
+}
+
+.metric-card.border-warning-subtle {
+    border-left-color: var(--accent-warning);
+}
+
+.progress-bar {
+    border-radius: 10px;
+    transition: width 1s ease-in-out;
+}
+
+#stat-students, #stat-tickets {
+    letter-spacing: -1px;
+}

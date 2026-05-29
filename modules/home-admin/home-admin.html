@@ -1,76 +1,71 @@
 <div class="container-fluid p-4 p-md-5">
-    <!-- Hero Section -->
+    <!-- Admin Hero -->
     <div class="row mb-5">
-        <div class="col-xl-8">
-            <h1 class="display-5 fw-bold mb-3">NEXUS <span class="text-info">Admin</span></h1>
-            <p class="text-secondary fs-5 lh-base">
-                Panel de control centralizado para la administración del ecosistema. Supervisa la salud de los servicios y analiza el rendimiento de las integraciones de IA.
-            </p>
+        <div class="col-12">
+            <h2 class="fw-bold mb-1">Administración del Ecosistema</h2>
+            <p class="text-secondary small">Panel centralizado para el monitoreo de infraestructura y servicios de IA.</p>
         </div>
     </div>
     
-    <div class="row g-4">
-        <!-- Service Management Card -->
-        <div class="col-md-6">
-            <div class="nx-card h-100 d-flex flex-column p-4 p-xl-5">
-                <div class="mb-4">
-                    <div class="p-4 rounded-circle bg-info bg-opacity-10 text-info d-inline-block">
-                        <i class="bi bi-shield-lock-fill fs-1"></i>
+    <!-- Realtime Chart Row -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="nx-card p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h5 class="fw-bold m-0">Tráfico de Red y API</h5>
+                        <p class="text-muted extra-small m-0">Monitoreo en tiempo real de peticiones al ecosistema.</p>
                     </div>
+                    <div class="nx-badge nx-badge-success">LIVE</div>
                 </div>
-                <h3 class="fw-bold mb-3">Estado de Servicios</h3>
-                <p class="text-secondary mb-5 flex-grow-1">
-                    Controla la disponibilidad de cada módulo en tiempo real. Activa o desactiva servicios para simular escenarios de contingencia y resiliencia institucional.
-                </p>
-                <button class="nx-btn nx-btn-primary w-100 justify-content-center py-3 fs-6" onclick="Router.loadModule('estado-servicios')">
-                    Gestionar Disponibilidad
-                </button>
-            </div>
-        </div>
-
-        <!-- Reports Card -->
-        <div class="col-md-6">
-            <div class="nx-card h-100 d-flex flex-column p-4 p-xl-5">
-                <div class="mb-4">
-                    <div class="p-4 rounded-circle bg-primary bg-opacity-10 text-primary d-inline-block">
-                        <i class="bi bi-graph-up-arrow fs-1"></i>
-                    </div>
+                <div style="height: 220px;">
+                    <canvas id="admin-main-chart"></canvas>
                 </div>
-                <h3 class="fw-bold mb-3">Reportes y Métricas</h3>
-                <p class="text-secondary mb-5 flex-grow-1">
-                    Accede a analíticas detalladas sobre el uso de la plataforma, logs de interacción con IA y consumo de recursos de red por cada microservicio.
-                </p>
-                <button class="nx-btn nx-btn-outline w-100 justify-content-center py-3 fs-6" onclick="Router.loadModule('reportes')">
-                    Ver Analíticas
-                </button>
             </div>
         </div>
     </div>
 
-    <!-- Admin Quick Stats -->
-    <div class="row mt-5 g-4">
-        <div class="col-md-3">
-            <div class="nx-card text-center py-4">
-                <div class="text-muted small text-uppercase fw-bold mb-1">Módulos</div>
-                <div class="h2 fw-bold mb-0">5</div>
+    <div class="row g-4">
+        <!-- Quick Stats -->
+        <div class="col-md-6 col-lg-3">
+            <div class="nx-card text-center py-3">
+                <div class="text-muted extra-small fw-bold text-uppercase mb-1">Disponibilidad</div>
+                <div class="h3 fw-bold mb-0 text-success">100%</div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="nx-card text-center py-4">
-                <div class="text-muted small text-uppercase fw-bold mb-1">Alertas</div>
-                <div class="h2 fw-bold mb-0 text-success">0</div>
+        <div class="col-md-6 col-lg-3">
+            <div class="nx-card text-center py-3">
+                <div class="text-muted extra-small fw-bold text-uppercase mb-1">Peticiones IA</div>
+                <div class="h3 fw-bold mb-0">1.2k</div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="nx-card text-center py-4">
-                <div class="text-muted small text-uppercase fw-bold mb-1">Uso IA</div>
-                <div class="h2 fw-bold mb-0">84%</div>
+        <div class="col-md-6 col-lg-3">
+            <div class="nx-card text-center py-3">
+                <div class="text-muted extra-small fw-bold text-uppercase mb-1">Tiempo de Respuesta</div>
+                <div class="h3 fw-bold mb-0">18ms</div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="nx-card text-center py-4">
-                <div class="text-muted small text-uppercase fw-bold mb-1">Sesiones</div>
-                <div class="h2 fw-bold mb-0">24</div>
+        <div class="col-md-6 col-lg-3">
+            <div class="nx-card text-center py-3">
+                <div class="text-muted extra-small fw-bold text-uppercase mb-1">Alertas</div>
+                <div class="h3 fw-bold mb-0 text-muted">0</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 g-4">
+        <div class="col-md-6">
+            <div class="nx-card h-100">
+                <h6 class="fw-bold mb-3"><i class="bi bi-shield-check me-2"></i>Microservicios</h6>
+                <p class="text-secondary extra-small mb-4">Gestión reactiva de la disponibilidad de los módulos de la Intranet.</p>
+                <button class="nx-btn nx-btn-primary w-100" onclick="Router.loadModule('estado-servicios')">Configurar Servicios</button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="nx-card h-100">
+                <h6 class="fw-bold mb-3"><i class="bi bi-bar-chart me-2"></i>Reportes</h6>
+                <p class="text-secondary extra-small mb-4">Análisis detallado de logs, actividad de usuarios e integración de IA.</p>
+                <button class="nx-btn nx-btn-outline w-100" onclick="Router.loadModule('reportes')">Ver Métricas Avanzadas</button>
             </div>
         </div>
     </div>
