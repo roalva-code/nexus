@@ -1,73 +1,72 @@
-/* Estilos para el Módulo de Tickets IA */
+/* Estilos mejorados para el Módulo de Tickets IA */
 
 .chat-container {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
     display: flex;
     flex-direction: column;
-    height: 500px;
-    background: rgba(255, 255, 255, 0.02);
+    height: 600px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
 }
 
 .chat-window {
     flex-grow: 1;
     overflow-y: auto;
+    padding: 2rem !important;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    padding-right: 0.5rem;
+}
+
+.chat-input-area {
+    border-top: 1px solid var(--border-color);
+    padding: 1rem;
+    background: var(--bg-sidebar);
 }
 
 /* Bubbles */
-.chat-message {
-    display: flex;
-    max-width: 85%;
+.chat-message.bot .chat-bubble {
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-top-left-radius: 4px;
 }
 
-.chat-message.bot {
-    align-self: flex-start;
-}
-
-.chat-message.user {
-    align-self: flex-end;
+.chat-message.user .chat-bubble {
+    background: var(--accent-primary);
+    color: #ffffff;
+    border-top-right-radius: 4px;
 }
 
 .chat-bubble {
-    padding: 0.75rem 1rem;
-    border-radius: 12px;
-    font-size: 0.875rem;
-    line-height: 1.4;
+    padding: 1rem 1.25rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    border-radius: 1rem;
 }
 
-.bot .chat-bubble {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    color: var(--text-primary);
-    border-bottom-left-radius: 2px;
-}
-
-.user .chat-bubble {
-    background: var(--accent-primary);
-    color: white;
-    border-bottom-right-radius: 2px;
+/* Skeleton Loading */
+.skeleton-item {
+    height: 10px;
+    background: linear-gradient(90deg, var(--border-color) 25%, var(--accent-secondary) 50%, var(--border-color) 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+    border-radius: 4px;
 }
 
 /* Result Area */
-.area-card {
-    border-left: 4px solid var(--accent-primary);
+.nx-card.border-primary {
+    border-color: var(--accent-primary) !important;
 }
 
-.area-card.SIAS { border-left-color: #ff3b30; }
-.area-card.SISTEMAS { border-left-color: #0071e3; }
-.area-card.SOPORTE { border-left-color: #34c759; }
+/* Text and Elements */
+.text-muted { color: var(--text-muted) !important; }
+.text-secondary { color: var(--text-secondary) !important; }
+.text-primary { color: var(--accent-primary) !important; }
+.bg-secondary.bg-opacity-5 { background-color: var(--accent-secondary); opacity: 0.5; }
 
-.animate-fadeIn {
-    animation: fadeIn 0.5s ease forwards;
+@keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Scrollbar sutil */
-.chat-window::-webkit-scrollbar { width: 4px; }
-.chat-window::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.05); border-radius: 10px; }

@@ -1,38 +1,65 @@
 <div class="container-fluid p-4 p-md-5">
-    <div class="row mb-4">
-        <div class="col-12">
-            <h3 class="fw-bold mb-1">Asistente de Soporte Inteligente</h3>
-            <p class="text-secondary small">Describe tu incidencia y nuestra IA te derivará al área técnica correspondiente.</p>
+    <div class="row mb-5 align-items-center">
+        <div class="col-lg-6">
+            <h2 class="fw-bold mb-1">Asistente NEXUS IA</h2>
+            <p class="text-secondary">Soporte Técnico Inteligente. Clasificación automática.</p>
+        </div>
+        <div class="col-lg-6 text-lg-end">
+            <button class="nx-btn nx-btn-outline" data-bs-toggle="modal" data-bs-target="#apiKeyModal">
+                <i class="bi bi-gear"></i> Configurar API Key
+            </button>
         </div>
     </div>
 
     <div class="row g-4 justify-content-center">
-        <div class="col-xl-8 col-lg-10">
-            <div class="nx-card chat-container">
-                <!-- Chat Window -->
-                <div class="chat-window" id="chat-window">
-                    <div class="chat-message bot">
-                        <div class="chat-bubble">
-                            Hola, soy el asistente NEXUS. ¿En qué puedo ayudarte hoy? Por favor, describe el problema que estás teniendo.
+        <div class="col-xl-9">
+            <div id="ai-result" class="mt-4 d-none animate-fadeIn"></div>
+            
+            <div class="nx-card chat-container h-100 p-0 border-0 shadow-lg">
+                <div class="chat-window p-4" id="chat-window" style="height: 400px; overflow-y: auto;">
+                    <div class="chat-message bot mb-3">
+                        <div class="chat-bubble p-3 rounded-4" style="max-width: 80%;">
+                            Hola, soy el asistente NEXUS. Describe tu problema y clasificaré tu ticket automáticamente.
                         </div>
                     </div>
                 </div>
 
-                <!-- Input Area -->
-                <div class="chat-input-area border-top border-white border-opacity-10 mt-3 pt-3">
+                <div class="chat-input-area p-3 border-top border-opacity-10">
                     <form id="chat-form" class="d-flex gap-2">
-                        <input type="text" class="nx-input" id="user-input" placeholder="Ej: No tengo internet en el laboratorio o mi cuenta SIAS está bloqueada..." autocomplete="off">
-                        <button type="submit" class="nx-btn nx-btn-primary px-4">
+                        <input type="text" class="nx-input p-3 rounded-4" id="user-input" placeholder="Ej: No carga el sistema de matrículas, error 500..." autocomplete="off">
+                        <button type="submit" class="nx-btn nx-btn-primary px-4 rounded-4">
                             <i class="bi bi-send-fill"></i>
                         </button>
                     </form>
                 </div>
             </div>
-            
-            <!-- Result Card (Hidden by default) -->
-            <div id="ai-result" class="mt-4 d-none animate-fadeIn">
-                <!-- Se llenará dinámicamente -->
+        
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="apiKeyModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content nx-card">
+            <div class="modal-header border-bottom border-opacity-10">
+                <h5 class="modal-title text-secondary">Configuración de API Key</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="small text-secondary">Ingresa tu clave de Groq para interactuar con la IA. Se guardará localmente por 5 horas.</p>
+                <input type="password" class="nx-input" id="ai-key-input" placeholder="gsk_...">
+            </div>
+            <div class="modal-footer border-top border-opacity-10">
+                <button type="button" class="nx-btn nx-btn-outline" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="nx-btn nx-btn-primary" id="save-key-btn" data-bs-dismiss="modal">Guardar</button>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .chat-bubble { border-radius: 1rem; }
+    .chat-message.user { text-align: right; }
+    .chat-message.user .chat-bubble { display: inline-block; background: var(--accent-primary); color: white; padding: 0.75rem 1rem; border-radius: 1rem 1rem 0 1rem; }
+</style>

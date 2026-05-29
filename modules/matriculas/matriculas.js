@@ -57,11 +57,6 @@ function renderTable(alumnos, tbody) {
         return `
         <tr>
             <td>
-                <div class="avatar-circle">
-                    ${alumno.nombres.charAt(0)}
-                </div>
-            </td>
-            <td>
                 <div class="fw-bold small-text">${alumno.nombres} ${alumno.apellidos}</div>
                 <div class="text-muted extra-small">${alumno.correo}</div>
             </td>
