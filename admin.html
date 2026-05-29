@@ -35,33 +35,45 @@
             <div class="sidebar-content h-100 d-flex flex-column">
                 <div class="logo-container mb-4">
                     <div class="logo">
-                        <img src="./assets/img/logo.png" alt="Logo" width="22px" height="22px">
-                        <span class="fw-bold fs-6 tracking-tight">NEXUS</span>
+                        <img src="./assets/img/logo.png" alt="Logo" width="22px" height="24px">
                     </div>
                     <div class="menu">
-                        <span id="menu"><i class="bi bi-layout-sidebar-inset"></i></span>
+                        <span id="menu" style="cursor: pointer;"><i class="bi bi-layout-sidebar-inset"></i></span>
+                        <span id="close" style="display: none; cursor: pointer;"><i class="bi bi-layout-sidebar"></i></span>
                     </div>
                 </div>
                 
-                <div class="menu-content flex-grow-1">
-                    <ul class="list-unstyled p-0">
+                <div class="menu-content">
+                    <ul style="padding: 0px !important;">
                         <li class="item-content">
-                            <a data-module="home-admin" class="link-item">
-                                <i class="bi bi-house-door"></i>
-                                <span class="name-item">Inicio</span>
-                            </a>
+                            <div class="item-menu">    
+                                <a data-module="home-admin" class="link-item">
+                                    <div>
+                                       <i class="bi bi-house-door"></i>  
+                                    </div>   
+                                    <div class="name-item">Inicio</div>
+                                </a>
+                            </div>
                         </li>
                         <li class="item-content">
-                            <a data-module="estado-servicios" class="link-item">
-                                <i class="bi bi-shield-check"></i>
-                                <span class="name-item">Servicios</span>
-                            </a>
+                            <div class="item-menu">
+                                <a data-module="estado-servicios" class="link-item">
+                                    <div>
+                                        <i class="bi bi-shield-check"></i>
+                                    </div>   
+                                    <div class="name-item">Servicios</div>
+                                </a>
+                            </div>
                         </li>
                         <li class="item-content">
-                            <a data-module="reportes" class="link-item">
-                                <i class="bi bi-bar-chart"></i>
-                                <span class="name-item">Reportes</span>
-                            </a>
+                            <div class="item-menu">
+                                <a data-module="reportes" class="link-item">
+                                    <div>
+                                        <i class="bi bi-bar-chart"></i> 
+                                    </div>   
+                                    <div class="name-item">Reportes</div>
+                                </a>
+                            </div>
                         </li>
                     </ul>
                 </div>

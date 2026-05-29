@@ -21,6 +21,7 @@
     align-items: center;
     padding: 0 1.5rem;
     z-index: 100;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .header h2 {
@@ -145,14 +146,18 @@
     padding: 1.25rem 0.5rem;
 }
 
-.logo-container.active {
-    flex-direction: column;
-    gap: 15px;
+.sidebar.active .name-item {
+    display: none !important;
 }
 
-.link-item.active {
+.sidebar.active .link-item {
     justify-content: center;
-    padding: 10px;
+}
+
+.sidebar.active .logo-container {
+    flex-direction: column;
+    gap: 15px;
+    padding: 0.5rem 0;
 }
 
 /* Overlay para móvil */
