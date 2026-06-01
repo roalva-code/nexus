@@ -134,12 +134,12 @@ function renderResultCard(container, data) {
                     <div class="fw-bold">${data.phone}</div>
                 </div>
             </div>
-            <div class="mt-3 p-3 bg-secondary bg-opacity-5 rounded-3">
-                <div class="text-muted small text-uppercase mb-1">Correo electrónico</div>
-                <div class="fw-bold text-break">${data.email}</div>
+            <div class="mt-3 p-3 bg-secondary bg-opacity-1 rounded-3">
+                <div class="text-white small text-uppercase mb-1">Correo electrónico</div>
+                <div class="fw-bold text-white">${data.email}</div>
             </div>
-            <div class="mt-3 p-3 bg-secondary bg-opacity-5 rounded-3">
-                <p class="text-secondary small mb-0"><strong>Nota:</strong> ${data.message}</p>
+            <div class="mt-3 p-3 bg-secondary bg-opacity-1 rounded-3">
+                <p class="text-white small mb-0"><strong>Nota:</strong> ${data.message}</p>
             </div>
         </div>
     `;

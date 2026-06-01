@@ -3,6 +3,7 @@
  */
 
 import ModuleService from '../services/module-service.js';
+import Animations from './animations.js';
 
 const Router = {
     // Contenedor principal donde se cargará el contenido
@@ -55,6 +56,9 @@ const Router = {
             
             // Inyectar el HTML
             this.contentArea.innerHTML = html;
+
+            // Animar entrada del módulo
+            Animations.animateModuleEntry(this.contentArea);
 
             // Cargar CSS específico del módulo
             this.loadModuleCSS(moduleName);

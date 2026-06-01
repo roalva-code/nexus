@@ -2,6 +2,8 @@
  * Gestión de la interfaz de usuario (UI) - Centralizado
  */
 
+import Animations from './animations.js';
+
 export function initUI() {
     initTheme();
     initSidebar();
@@ -9,7 +11,6 @@ export function initUI() {
 
 function initTheme() {
     const themeToggle = document.getElementById("theme-toggle");
-    const themeIcon = document.getElementById("theme-icon");
     const body = document.body;
 
     const savedTheme = localStorage.getItem("nexus-theme") || 
@@ -31,47 +32,52 @@ function setTheme(theme) {
     localStorage.setItem("nexus-theme", theme);
     const themeIcon = document.getElementById("theme-icon");
     if (themeIcon) {
-        themeIcon.className = theme === "light" ? "bi bi-sun fs-6" : "bi bi-moon-fill fs-6";
+        themeIcon.className = theme === "light" ? "bi bi-sun fs-6" : "bi bi-moon-stars fs-6";
     }
 }
 
 function initSidebar() {
-    const menuBtn = document.getElementById("menu");
-    const closeBtn = document.getElementById("close");
-    const mobileToggle = document.getElementById("mobile-toggle");
-    const sidebarOverlay = document.getElementById("sidebar-overlay");
-    const sidebar = document.querySelector(".sidebar");
-    const mainContent = document.querySelector(".main-content");
+    // Delegación de eventos para el Sidebar
+    document.addEventListener('click', (e) => {
+        const menuTrigger = e.target.closest('#menu');
+        const closeTrigger = e.target.closest('#close');
+        const mobileTrigger = e.target.closest('#mobile-toggle');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        
+        const sidebar = document.querySelector('.sidebar');
+        const mainContent = document.querySelector('.main-content');
+        const menuBtn = document.getElementById('menu');
+        const closeBtn = document.getElementById('close');
 
-    if (!sidebar || !menuBtn || !closeBtn) return;
+        if (!sidebar || !mainContent || !menuBtn || !closeBtn) return;
 
-    // Toggle Desktop
-    menuBtn.addEventListener("click", () => {
-        sidebar.classList.add("active");
-        mainContent.classList.add("active");
-        menuBtn.style.display = "none";
-        closeBtn.style.display = "block";
-    });
+        // Toggle Desktop: CONTRAER
+        if (menuTrigger) {
+            sidebar.classList.add('active');
+            mainContent.classList.add('active');
+            menuBtn.style.display = 'none';
+            closeBtn.style.display = 'block';
+        }
+        
+        // Toggle Desktop: EXPANDIR
+        if (closeTrigger) {
+            sidebar.classList.remove('active');
+            mainContent.classList.remove('active');
+            closeBtn.style.display = 'none';
+            menuBtn.style.display = 'block';
+        }
 
-    closeBtn.addEventListener("click", () => {
-        sidebar.classList.remove("active");
-        mainContent.classList.remove("active");
-        menuBtn.style.display = "block";
-        closeBtn.style.display = "none";
-    });
-
-    // Toggle Mobile
-    if (mobileToggle && sidebarOverlay) {
-        mobileToggle.addEventListener("click", () => {
+        // Mobile Logic
+        if (mobileTrigger && sidebarOverlay) {
             sidebar.classList.add("mobile-active");
-            sidebarOverlay.classList.add("active");
+            Animations.animateOverlay(sidebarOverlay, true);
             document.body.style.overflow = "hidden";
-        });
+        }
 
-        sidebarOverlay.addEventListener("click", () => {
+        if (sidebarOverlay && e.target === sidebarOverlay) {
             sidebar.classList.remove("mobile-active");
-            sidebarOverlay.classList.remove("active");
+            Animations.animateOverlay(sidebarOverlay, false);
             document.body.style.overflow = "";
-        });
-    }
+        }
+    });
 }

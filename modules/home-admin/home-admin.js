@@ -1,3 +1,5 @@
+import Animations from '../../js/animations.js';
+
 /**
  * Lógica del módulo Home Admin
  */
@@ -7,7 +9,11 @@ export async function init(container) {
     const root = container || document;
 
     setTimeout(() => {
+        // Inicializar gráfico (si existe lógica previa)
         initAdminDashboardChart(root);
+        
+        // Animación de entrada para las tarjetas
+        Animations.animateCards('.nx-card');
     }, 50);
 }
 

@@ -9,6 +9,7 @@
     grid-template-rows: 60px 1fr;
     height: 100vh;
     background-color: var(--bg-sidebar);
+    transition: grid-template-columns 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* --- HEADER --- */
@@ -21,7 +22,6 @@
     align-items: center;
     padding: 0 1.5rem;
     z-index: 100;
-    border-bottom: 1px solid var(--border-color);
 }
 
 .header h2 {
@@ -39,6 +39,7 @@
     display: flex;
     flex-direction: column;
     z-index: 101;
+    overflow: hidden;
 }
 
 .logo-container {
@@ -46,12 +47,14 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.25rem 0.5rem 1.5rem 0.5rem;
+    transition: all 0.4s ease;
 }
 
 .logo {
     display: flex;
     align-items: center;
     gap: 10px;
+    white-space: nowrap;
 }
 
 .logo img {
@@ -60,7 +63,7 @@
     height: 24px;
 }
 
-.menu span {
+.sidebar-toggle-container span {
     color: var(--text-muted);
     cursor: pointer;
     font-size: 1.1rem;
@@ -69,7 +72,7 @@
     transition: var(--transition-smooth);
 }
 
-.menu span:hover {
+.sidebar-toggle-container span:hover {
     background: rgba(255, 255, 255, 0.05);
     color: var(--text-primary);
 }
@@ -94,6 +97,7 @@
     font-size: 0.875rem;
     text-decoration: none;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .link-item i {
@@ -110,7 +114,7 @@
     color: var(--accent-primary);
     position: relative;
     z-index: 102;
-    margin-right: -0.75rem; 
+    margin-right: -0.85rem;
     padding-right: 1.5rem;
     font-weight: 600;
 }
@@ -123,6 +127,7 @@
     background: var(--bg-content);
     position: relative;
     border-radius: 16px 0 0 0;
+    transition: all 0.4s ease;
 }
 
 .view {
@@ -138,7 +143,7 @@
 
 /* --- SIDEBAR ACTIVE (COLLAPSED) --- */
 .main-content.active {
-    grid-template-columns: 72px 1fr !important;
+    grid-template-columns: 72px 1fr;
 }
 
 .sidebar.active {
@@ -158,6 +163,7 @@
     flex-direction: column;
     gap: 15px;
     padding: 0.5rem 0;
+    justify-content: center;
 }
 
 /* Overlay para móvil */
@@ -233,7 +239,7 @@
         padding: 0.75rem;
     }
 
-    .menu {
+    .sidebar-toggle-container {
         display: none;
     }
 }
