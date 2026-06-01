@@ -32,7 +32,7 @@ function setTheme(theme) {
     localStorage.setItem("nexus-theme", theme);
     const themeIcon = document.getElementById("theme-icon");
     if (themeIcon) {
-        themeIcon.className = theme === "light" ? "bi bi-sun fs-6" : "bi bi-moon-stars fs-6";
+        themeIcon.className = theme === "light" ? "bi bi-sun-fill fs-6" : "bi bi-moon-fill fs-6";
     }
 }
 
