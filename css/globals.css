@@ -226,6 +226,11 @@ body {
     100% { opacity: 0.22; }
 }
 
+/* Bloqueo de scroll inteligente al caer servicio (oculta esqueletos excedentes) */
+.content:has(.nx-overlay) {
+    overflow-y: hidden !important;
+}
+
 .nx-icon-dynamic { color: var(--text-muted); }
 
 /* Scrollbar */

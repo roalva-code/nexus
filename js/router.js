@@ -31,8 +31,16 @@ const Router = {
         
         // Escuchar cambios de estado globales para reaccionar en tiempo real
         window.addEventListener('moduleStatusChanged', (e) => {
+            console.log(`Router: Evento moduleStatusChanged capturado para [${e.detail.moduleName}]. Estado: ${e.detail.status ? 'ONLINE' : 'OFFLINE'}. Módulo actual visible: [${this.currentModule}].`);
             if (this.currentModule === e.detail.moduleName) {
-                this.checkResilience(e.detail.moduleName, e.detail.status);
+                if (e.detail.status) {
+                    console.log(`Router: Restaurando módulo [${e.detail.moduleName}] cargando contenido real.`);
+                    // Si vuelve a estar online, recargar el módulo para restaurar el contenido real
+                    this.loadModule(e.detail.moduleName);
+                } else {
+                    console.log(`Router: Iniciando bloqueo de resiliencia y esqueletos para [${e.detail.moduleName}].`);
+                    this.checkResilience(e.detail.moduleName, e.detail.status);
+                }
             }
         });
 
