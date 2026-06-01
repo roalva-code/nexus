@@ -1,39 +1,62 @@
 <div class="container-fluid p-4 p-md-5">
-    <div class="row mb-5 align-items-center">
+    <div class="row mb-4 align-items-center">
         <div class="col-lg-6">
             <h2 class="fw-bold mb-1">Asistente NEXUS IA</h2>
-            <p class="text-secondary">Soporte Técnico Inteligente. Clasificación automática.</p>
+            <p class="text-secondary small mb-0">Soporte Técnico Inteligente. Clasificación automática.</p>
         </div>
-        <div class="col-lg-6 text-lg-end">
-            <button class="nx-btn nx-btn-outline" data-bs-toggle="modal" data-bs-target="#apiKeyModal">
-                <i class="bi bi-gear"></i> Configurar API Key
+        <div class="col-lg-6 text-lg-end mt-3 mt-lg-0">
+            <button class="nx-btn nx-btn-outline rounded-3" data-bs-toggle="modal" data-bs-target="#apiKeyModal">
+                <i class="bi bi-gear-fill me-1"></i> Configurar API Key
             </button>
         </div>
     </div>
 
     <div class="row g-4 justify-content-center">
         <div class="col-xl-9">
-            <div id="ai-result" class="mt-4 d-none animate-fadeIn"></div>
-            
+            <div id="ai-result" class="mb-4 d-none animate-fadeIn"></div>
+
             <div class="nx-card chat-container h-100 p-0 border-0 shadow-lg">
-                <div class="chat-window p-4" id="chat-window" style="height: 400px; overflow-y: auto;">
-                    <div class="chat-message bot mb-3">
-                        <div class="chat-bubble p-3 rounded-4" style="max-width: 80%;">
-                            Hola, soy el asistente NEXUS. Describe tu problema y clasificaré tu ticket automáticamente.
+                <!-- Premium Chat Header -->
+                <div class="chat-header p-3 border-bottom d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="chat-avatar d-flex align-items-center justify-content-center bg-primary bg-opacity-10 text-primary rounded-circle" style="width:40px;height:40px;">
+                            <i class="bi bi-robot fs-5 animate-pulse"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-0">NEXUS AI Bot</h6>
+                            <span class="d-flex align-items-center gap-1 extra-small text-secondary">
+                                <span class="d-inline-block rounded-circle bg-success animate-pulse" style="width: 6px; height: 6px;"></span>
+                                En línea
+                            </span>
+                        </div>
+                    </div>
+                    <div class="text-muted extra-small d-none d-sm-block">
+                        <i class="bi bi-shield-lock-fill me-1"></i> Encriptado localmente
+                    </div>
+                </div>
+
+                <!-- Chat Messages -->
+                <div class="chat-window p-4" id="chat-window" style="max-height: 460px; overflow-y: auto;">
+                    <div class="chat-message bot mb-4 d-flex gap-3 align-items-start">
+                        <div class="msg-avatar d-flex align-items-center justify-content-center rounded-circle" style="width:35px;height:35px;">
+                            <i class="bi bi-robot"></i>
+                        </div>
+                        <div class="chat-bubble p-3 rounded-4 bg-deep text-secondary">
+                            Hola, soy el asistente NEXUS. Describe tu inconveniente de manera natural (ej. "No puedo entrar a matricularme" o "Error al cargar mis notas") y me encargaré de clasificar tu ticket y derivarlo al área técnica responsable de forma automática.
                         </div>
                     </div>
                 </div>
 
-                <div class="chat-input-area p-3 border-top border-opacity-10">
-                    <form id="chat-form" class="d-flex gap-2">
-                        <input type="text" class="nx-input p-3 rounded-4" id="user-input" placeholder="Ej: No carga el sistema de matrículas, error 500..." autocomplete="off">
-                        <button type="submit" class="nx-btn nx-btn-primary px-4 rounded-4">
+                <!-- Input Area -->
+                <div class="chat-input-area p-3 border-top">
+                    <form id="chat-form" class="d-flex gap-2 bg-deep p-1 rounded-4 border border-opacity-10 w-100 align-items-center">
+                        <input type="text" class="chat-input border-0 bg-transparent px-3 py-2 w-100 text-secondary" id="user-input" placeholder="Escribe tu mensaje aquí..." autocomplete="off" />
+                        <button type="submit" class="nx-btn nx-btn-primary rounded-3 px-3 py-2">
                             <i class="bi bi-send-fill"></i>
                         </button>
                     </form>
                 </div>
             </div>
-        
         </div>
     </div>
 </div>
@@ -48,7 +71,7 @@
             </div>
             <div class="modal-body">
                 <p class="small text-secondary">Ingresa tu clave de Groq para interactuar con la IA. Se guardará localmente por 5 horas.</p>
-                <input type="password" class="nx-input" id="ai-key-input" placeholder="gsk_...">
+                <input type="password" class="nx-input" id="ai-key-input" placeholder="gsk_..." />
             </div>
             <div class="modal-footer border-top border-opacity-10">
                 <button type="button" class="nx-btn nx-btn-outline" data-bs-dismiss="modal">Cerrar</button>
@@ -57,9 +80,3 @@
         </div>
     </div>
 </div>
-
-<style>
-    .chat-bubble { border-radius: 1rem; }
-    .chat-message.user { text-align: right; }
-    .chat-message.user .chat-bubble { display: inline-block; background: var(--accent-primary); color: white; padding: 0.75rem 1rem; border-radius: 1rem 1rem 0 1rem; }
-</style>

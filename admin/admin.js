@@ -14,8 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1. Inicializar Router (apuntando al contenedor de admin)
     Router.init("view_mod");
 
-    // 2. Cargar módulo inicial de Admin
-    Router.loadModule("home-admin");
+    // 2. Cargar módulo inicial de Admin (Hash de la URL o "home-admin" por defecto)
+    const initialModule = window.location.hash.slice(1) || "home-admin";
+    Router.loadModule(initialModule);
 
     // 3. Gestión de Navegación y Sincronización del Sidebar Admin
     const itemContents = document.querySelectorAll(".item-content");

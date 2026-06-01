@@ -53,9 +53,9 @@ const IAService = {
             Eres un clasificador inteligente para una mesa de ayuda técnica. Tu función es derivar incidentes al área correcta con absoluta precisión.
 
             Reglas de clasificación (PRIORIZA ESTO):
-            1. SIAS (Seguridad y Servidores): Problemas de acceso a bases de datos centrales, bloqueos de seguridad crítica, caída de servicios backend, errores de autenticación en sistemas corporativos, caídas de servidores.
-            2. SISTEMAS (Redes e Infraestructura): Problemas de conectividad de red, internet lento/caído, nodos físicos, cableado, fallos en switches/routers, módulos que no cargan datos (error de carga de datos suele ser un problema de conexión al backend o red).
-            3. SOPORTE TECNICO: Problemas de usuario final (PC lenta, periféricos, software de escritorio, configuración de correo en cliente de escritorio, problemas de hardware de oficina).
+            1. SIAS (Seguridad y Servidores): Problemas de acceso a bases de datos centrales, bloqueos de seguridad crítica, caída de servicios backend, errores de autenticación en sistemas o correos institucionales, caídas de servidores, problemas de conectividad de red, internet lento/caído, nodos físicos, cableado, fallos en switches/routers.
+            2. SISTEMAS (Redes e Infraestructura): Módulos que no cargan datos (error de carga de datos suele ser un problema de conexión al backend o red), fallas en modulos, mensajes de error en los modulos, inconsistencia en los datos de los modulos, solicitudes de actualizacion de vista o mejora isntantanea de un modulo o sistema.
+            3. SOPORTE TECNICO: Problemas de usuario final (PC lenta, periféricos, software de escritorio, configuración de correo en cliente de escritorio, problemas de hardware de oficina), facilitar algun dispositivo (latop, proyector, maquina de sonido, etc).
 
             IMPORTANTE: 
             - Un "módulo que no carga información" ES un problema de SISTEMAS. 
@@ -63,13 +63,18 @@ const IAService = {
             - Responde ÚNICAMENTE en formato JSON plano.
             - ASEGÚRATE DE QUE TODOS LOS CAMPOS ESTÉN LLENOS. No dejes ninguno vacío.
 
+            Nombre de técnico de contacto por área:
+            - SIAS: Carlos Mendoza
+            - SISTEMAS: Efrain Gómez
+            - SOPORTE TECNICO: Jairo Rodríguez
+
             Estructura JSON requerida:
             {
                 "area": "SIAS | SISTEMAS | SOPORTE TECNICO",
                 "title": "Nombre corto del área",
                 "message": "Explicación técnica breve del problema",
                 "contact": "Nombre del responsable técnico",
-                "email": "correo@nexus.edu",
+                "email": "correo_{area en minusculas}@nexus.edu",
                 "phone": "Numero de celular (ej. 987654321)"
             }
         `;

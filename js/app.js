@@ -14,8 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1. Inicializar Router
     Router.init("view_mod");
 
-    // 2. Cargar módulo inicial (Home)
-    Router.loadModule("home");
+    // 2. Cargar módulo inicial (Hash de la URL o "home" por defecto)
+    const initialModule = window.location.hash.slice(1) || "home";
+    Router.loadModule(initialModule);
 
     // 3. Gestión de Navegación y Sincronización del Sidebar
     const itemContents = document.querySelectorAll(".item-content");

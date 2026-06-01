@@ -20,6 +20,14 @@ const Router = {
             console.error(`No se encontró el contenedor con ID: ${containerId}`);
             return;
         }
+
+        // Escuchar cambios en la URL (Navegación nativa Atrás/Adelante)
+        window.addEventListener('hashchange', () => {
+            const moduleName = window.location.hash.slice(1);
+            if (moduleName && moduleName !== this.currentModule) {
+                this.loadModule(moduleName);
+            }
+        });
         
         // Escuchar cambios de estado globales para reaccionar en tiempo real
         window.addEventListener('moduleStatusChanged', (e) => {
@@ -28,7 +36,7 @@ const Router = {
             }
         });
 
-        console.log("Router inicializado correctamente.");
+        console.log("Router inicializado correctamente con soporte de Hash.");
     },
 
     /**
@@ -38,6 +46,11 @@ const Router = {
     async loadModule(moduleName) {
         if (!this.contentArea) return;
         this.currentModule = moduleName;
+
+        // Actualizar el hash de la URL sin recargar la página para habilitar persistencia e historial
+        if (window.location.hash.slice(1) !== moduleName) {
+            window.location.hash = moduleName;
+        }
 
         // Definir la ruta fuera del try para que sea accesible en el catch
         const path = `./modules/${moduleName}/${moduleName}.html`;
@@ -98,6 +111,53 @@ const Router = {
         if (existingOverlay) existingOverlay.remove();
 
         if (!isOnline) {
+            // Inyectar esqueleto inactivo difuso para simular carga caída de forma premium
+            this.contentArea.innerHTML = `
+                <div class="container-fluid p-4 p-md-5 animate-pulse" style="opacity: 0.15; pointer-events: none; user-select: none;">
+                    <div class="row mb-5">
+                        <div class="col-6">
+                            <div style="height: 32px; width: 45%; background-color: var(--accent-secondary); border-radius: 8px;"></div>
+                            <div style="height: 16px; width: 75%; background-color: var(--accent-secondary); border-radius: 6px;" class="mt-2"></div>
+                        </div>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="nx-card p-4 d-flex flex-column gap-3" style="border-color: var(--border-color); background: var(--bg-card);">
+                                <div style="height: 40px; width: 40px; background-color: var(--accent-secondary); border-radius: 50%;"></div>
+                                <div style="height: 20px; width: 70%; background-color: var(--accent-secondary); border-radius: 6px;"></div>
+                                <div style="height: 14px; width: 100%; background-color: var(--accent-secondary); border-radius: 6px;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="nx-card p-4 d-flex flex-column gap-3" style="border-color: var(--border-color); background: var(--bg-card);">
+                                <div style="height: 40px; width: 40px; background-color: var(--accent-secondary); border-radius: 50%;"></div>
+                                <div style="height: 20px; width: 50%; background-color: var(--accent-secondary); border-radius: 6px;"></div>
+                                <div style="height: 14px; width: 90%; background-color: var(--accent-secondary); border-radius: 6px;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="nx-card p-4 d-flex flex-column gap-3" style="border-color: var(--border-color); background: var(--bg-card);">
+                                <div style="height: 40px; width: 40px; background-color: var(--accent-secondary); border-radius: 50%;"></div>
+                                <div style="height: 20px; width: 60%; background-color: var(--accent-secondary); border-radius: 6px;"></div>
+                                <div style="height: 14px; width: 95%; background-color: var(--accent-secondary); border-radius: 6px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-12">
+                            <div class="nx-card p-4" style="border-color: var(--border-color); background: var(--bg-card);">
+                                <div style="height: 20px; width: 25%; background-color: var(--accent-secondary); border-radius: 6px;" class="mb-3"></div>
+                                <div class="d-flex flex-column gap-2">
+                                    <div style="height: 12px; width: 100%; background-color: var(--accent-secondary); border-radius: 4px;"></div>
+                                    <div style="height: 12px; width: 98%; background-color: var(--accent-secondary); border-radius: 4px;"></div>
+                                    <div style="height: 12px; width: 95%; background-color: var(--accent-secondary); border-radius: 4px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
             const overlay = document.createElement('div');
             overlay.className = 'nx-overlay';
             overlay.innerHTML = `
@@ -108,7 +168,9 @@ const Router = {
                 <p class="nx-overlay-msg">
                     Lo sentimos, el módulo <strong>${moduleName}</strong> se encuentra temporalmente fuera de servicio por mantenimiento o fallas técnicas.
                 </p>
-                <button class="nx-btn nx-btn-outline" onclick="location.reload()">Reintentar Conexión</button>
+                <button class="nx-btn" onclick="location.reload()">
+                    <i class="bi bi-arrow-clockwise"></i> Reintentar Conexión
+                </button>
             `;
             this.contentArea.appendChild(overlay);
         }
