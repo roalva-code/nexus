@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="./css/layout.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
     <script src="./libs/anime.umd.min.js"></script>
+    <!-- Filtro de Seguridad Admin -->
+    <script type="module" src="./admin/admin-auth.js"></script>
     <title>Nexus Admin - Panel de Control</title>
 </head>
 <body>
@@ -25,6 +27,10 @@
                 <div class="header-actions d-flex align-items-center gap-3">
                     <div class="theme-toggle p-2 rounded-circle hover-effect" id="theme-toggle" title="Cambiar Tema" style="cursor: pointer;">
                         <i class="bi bi-moon-fill fs-6" id="theme-icon"></i>
+                    </div>
+                    <!-- Botón Cerrar Sesión Premium -->
+                    <div class="p-2 rounded-circle hover-effect text-danger" id="logout-btn" title="Cerrar Sesión" style="cursor: pointer;">
+                        <i class="bi bi-box-arrow-right fs-6"></i>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import Router from '../js/router.js';
 import { initUI } from '../js/ui.js';
+import AdminAuth from './admin-auth.js';
 
 // Inicialización del Panel Administrativo
 document.addEventListener("DOMContentLoaded", () => {
@@ -10,6 +11,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Inicializar UI (Sidebar + Temas)
     initUI();
+
+    // Vincular botón de Logout
+    const logoutBtn = document.getElementById("logout-btn");
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", () => {
+            AdminAuth.logout();
+        });
+    }
 
     // 1. Inicializar Router (apuntando al contenedor de admin)
     Router.init("view_mod");
