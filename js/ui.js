@@ -42,6 +42,8 @@ function initSidebar() {
         const menuTrigger = e.target.closest('#menu');
         const closeTrigger = e.target.closest('#close');
         const mobileTrigger = e.target.closest('#mobile-toggle');
+        const mobileCloseTrigger = e.target.closest('#mobile-close');
+        const linkItemClicked = e.target.closest('.link-item');
         const sidebarOverlay = document.getElementById('sidebar-overlay');
         
         const sidebar = document.querySelector('.sidebar');
@@ -67,14 +69,20 @@ function initSidebar() {
             menuBtn.style.display = 'block';
         }
 
-        // Mobile Logic
+        // Mobile Logic - ABRIR
         if (mobileTrigger && sidebarOverlay) {
             sidebar.classList.add("mobile-active");
             Animations.animateOverlay(sidebarOverlay, true);
             document.body.style.overflow = "hidden";
         }
 
-        if (sidebarOverlay && e.target === sidebarOverlay) {
+        // Mobile Logic - CERRAR (Por click en overlay, botón X, o al seleccionar un módulo)
+        const shouldCloseMobileSidebar = 
+            (sidebarOverlay && e.target === sidebarOverlay) || 
+            mobileCloseTrigger || 
+            (linkItemClicked && sidebar.classList.contains("mobile-active"));
+
+        if (shouldCloseMobileSidebar && sidebarOverlay && sidebar.classList.contains("mobile-active")) {
             sidebar.classList.remove("mobile-active");
             Animations.animateOverlay(sidebarOverlay, false);
             document.body.style.overflow = "";

@@ -177,18 +177,12 @@
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     z-index: 1000;
+    display: none;
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.4s ease, visibility 0.4s;
-}
-
-.sidebar-overlay.active {
-    opacity: 1;
-    visibility: visible;
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 767.98px) {
     .main-content {
         grid-template-columns: 1fr;
         grid-template-areas:
@@ -237,6 +231,10 @@
         border-left: none;
         border-radius: 0;
         padding: 0.75rem;
+    }
+
+    .logo-container .menu {
+        display: none !important;
     }
 
     .sidebar-toggle-container {
