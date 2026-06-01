@@ -59,4 +59,38 @@
             </div>
         </div>
     </div>
+
+    <!-- Gráfico de Latencia de Microservicio (Tickets IA) -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="nx-card p-4 border-0 shadow-lg">
+                <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+                    <div>
+                        <h5 class="fw-bold m-0 d-flex align-items-center gap-2 text-secondary">
+                            <i class="bi bi-activity text-primary"></i> 
+                            Latencia en Tiempo Real (Tickets IA)
+                        </h5>
+                        <div class="text-secondary small">Monitoreo activo del tiempo de respuesta del modelo IA</div>
+                    </div>
+                    <div class="d-flex gap-4 text-end flex-wrap">
+                        <div>
+                            <div class="text-muted extra-small" style="font-size:10px; letter-spacing:0.5px;">LATENCIA PROM.</div>
+                            <div class="fw-bold text-primary fs-5" id="avg-latency">340 ms</div>
+                        </div>
+                        <div class="border-start border-secondary border-opacity-20 ps-4">
+                            <div class="text-muted extra-small" style="font-size:10px; letter-spacing:0.5px;">UPTIME</div>
+                            <div class="fw-bold text-success fs-5">99.98%</div>
+                        </div>
+                        <div class="border-start border-secondary border-opacity-20 ps-4">
+                            <div class="text-muted extra-small" style="font-size:10px; letter-spacing:0.5px;">RESPUESTA API</div>
+                            <div class="fw-bold text-white fs-5" id="last-latency">320 ms</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="position: relative; height: 240px; width: 100%;">
+                    <canvas id="latency-chart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
