@@ -14,13 +14,13 @@ const Config = {
     
     // Configuración Firebase (Opcional para Realtime)
     FIREBASE: {
-        apiKey: "TU_API_KEY",
-        authDomain: "tu-proyecto.firebaseapp.com",
-        databaseURL: "https://tu-proyecto.firebaseio.com",
-        projectId: "tu-proyecto",
-        storageBucket: "tu-proyecto.appspot.com",
-        messagingSenderId: "tu-sender-id",
-        appId: "tu-app-id"
+        apiKey: "AIzaSyD_s1odSclUNGhu8gh9Us8DW64072m3MEY",
+        authDomain: "nexus-6b1c9.firebaseapp.com",
+        projectId: "nexus-6b1c9",
+        storageBucket: "nexus-6b1c9.firebasestorage.app",
+        messagingSenderId: "887615214194",
+        appId: "1:887615214194:web:b4f662a6236484b29b68eb",
+        databaseURL: "https://nexus-6b1c9-default-rtdb.firebaseio.com",
     }
 };
 
