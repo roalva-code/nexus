@@ -4,13 +4,13 @@
 
 const Config = {
     // API de Inteligencia Artificial (Gemini)
-    AI_KEY: 'TU_API_KEY_AQUI',
-    AI_MODEL: 'gemini-2.0-flash-lite-001',
+    //AI_KEY: 'TU_API_KEY_AQUI',
+    //AI_MODEL: 'gemini-2.0-flash-lite-001',
     
     // Configuración Groq
     GROQ_KEY: 'TU_GROQ_API_KEY_AQUI',
     GROQ_MODEL: 'openai/gpt-oss-120b',
-    AI_PROVIDER: 'groq', // 'gemini' | 'groq'
+    AI_PROVIDER: 'groq', //'groq'
     
     // Configuración Firebase (Opcional para Realtime)
     FIREBASE: {
